@@ -11,7 +11,7 @@
           <h4 class="ion-text-center">Big Task</h4>
         </ion-col>
 
-        <ion-col size="12" class="ion-margin-bottom">
+        <ion-col size="12">
           <ion-item lines="none" class="border-box">
             <ion-input type="text" formControlName="clientcode" placeholder="Client Code">
               <ion-icon slot="start" name="people-outline"></ion-icon>
@@ -19,7 +19,7 @@
           </ion-item>
         </ion-col>
 
-        <ion-col size="12" class="ion-padding-top">
+        <ion-col size="12">
           <ion-item lines="none" class="border-box">
             <ion-input type="text" formControlName="username" placeholder="Username">
               <ion-icon slot="start" name="person-circle-outline"></ion-icon>
@@ -43,6 +43,9 @@
         <ion-col>
           <a routerLink="/forgot-password">Forgot Password?</a>
         </ion-col>
+        <ion-col> <!--must remove-->
+          <a routerLink="/subscription">Subscription</a>
+        </ion-col> 
       </ion-row>
     </ion-grid>
 

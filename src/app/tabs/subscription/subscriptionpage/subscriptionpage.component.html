@@ -1,0 +1,139 @@
+<ion-content class="ion-padding subscription-page">
+  <form [formGroup]="subscriptionForm">
+
+    <!-- <div class="top-bar">
+      <div class="left">
+        <ion-icon name="checkmark-circle"></ion-icon>
+        <span>Hi there!</span>
+      </div>
+      <div class="right">
+        <ion-icon name="close-outline"></ion-icon>
+        <ion-icon name="globe-outline"></ion-icon>
+      </div>
+    </div> -->
+
+    <h6 class="section-title">Recent Plan</h6>
+    <div class="plan-card">
+      <div class="plan-top">
+        <span class="plan-name">
+          {{ recentPlan.planName | titlecase }} Plan
+        </span>
+        <span class="status"
+          [ngClass]="{
+            expired: recentPlan.status === 'expired',
+            active: recentPlan.status === 'active'
+          }">
+          {{ recentPlan.status | titlecase }}
+        </span>
+        <ion-icon name="document-text-outline" class="list-icon" (click)="openPlanLog()"> </ion-icon>
+      </div>
+
+      <div class="plan-bottom">
+        {{ recentPlan.status === 'expired' ? 'Expired on' : 'Valid till' }}
+        {{ recentPlan.expiryDate | date:'dd/MM/yyyy' }}
+      </div>
+    </div>
+
+    <h6 class="section-title">Renew Plan</h6>
+
+  <div
+    class="renew-card"
+    *ngFor="let key of ['monthly','quarterly','yearly']"
+    [class.active]="subscriptionForm.value.plan === key"
+    (click)="subscriptionForm.patchValue({ plan: key })"
+  >
+
+  <div class="renew-header">
+    <b>{{ key | titlecase }}</b>
+    <span>
+      {{ plans[key].days }} Days Activation
+      <ng-container *ngIf="plans[key].discount">
+        with {{ plans[key].discount }} % Discount
+      </ng-container>
+    </span>
+  </div>
+
+  <div class="renew-body">
+
+    <ng-container *ngIf="subscriptionForm.value.plan === key; else inactivePlan">
+
+      <ion-radio-group
+        formControlName="userType"
+        (click)="$event.stopPropagation()">
+
+        <label>
+          <ion-radio value="single"></ion-radio>
+          <span>Single User</span>
+          <span class="price">Rs. {{ basePrice }}/month</span>
+        </label>
+
+        <label>
+          <ion-radio value="admin"></ion-radio>
+          <span>User with Admin *</span>
+          <span class="price">Admin Rs. {{ adminPrice }}/month</span>
+        </label>
+
+      </ion-radio-group>
+
+    </ng-container>
+
+    <ng-template #inactivePlan>
+      <label>
+        <ion-radio disabled></ion-radio>
+        <span>Single User</span>
+        <span class="price">Rs. {{ basePrice }}/month</span>
+      </label>
+
+      <label>
+        <ion-radio disabled></ion-radio>
+        <span>User with Admin *</span>
+        <span class="price">Admin Rs. {{ adminPrice }}/month</span>
+      </label>
+    </ng-template>
+
+    <div class="user-row">
+      <input
+        *ngIf="subscriptionForm.value.plan === key"
+        type="text"
+        placeholder="No of User"
+        formControlName="userCount"
+        maxlength="2"
+        (click)="$event.stopPropagation()"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        [disabled]="subscriptionForm.value.userType !== 'admin'" />
+
+      <input
+        *ngIf="subscriptionForm.value.plan !== key"
+        type="text"
+        placeholder="No of User"
+        maxlength="2"
+        disabled />
+      <span class="inline-text">Per User * Single User Cost</span>
+    </div>
+
+    <p class="note">
+      * To display price, enter no of user
+    </p> 
+  </div>
+</div>
+
+    <div class="promo-row">
+      <ion-input formControlName="promoCode" placeholder="Promotion Code"> </ion-input>
+      <ion-button size="small" [disabled]="!subscriptionForm.get('promoCode')?.valid" (click)="applyPromo()"> 
+        Apply
+      </ion-button>
+    </div>
+
+    <div class="payment-row">
+      <ion-button class="pay-btn" [disabled]="subscriptionForm.invalid" (click)="payClicked()"> 
+        Pay 
+      </ion-button>
+      <div class="amount">
+        <div>Total Amount</div>
+        <small>Including taxes</small>
+      </div>
+      <div class="price-final">Rs. {{ totalAmount | number: '1.2-2' }}</div>
+    </div>
+
+  </form>
+</ion-content>

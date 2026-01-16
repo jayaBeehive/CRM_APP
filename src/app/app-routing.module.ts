@@ -25,11 +25,15 @@ const routes: Routes = [
   {
     path: 'change-password',
     loadChildren: () => import('./common/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
-  },  {
+  },
+  {
     path: 'filter',
     loadChildren: () => import('./filter/filter.module').then( m => m.FilterPageModule)
   },
-
+  {
+    path: 'subscription',
+    loadChildren: () => import('./tabs/subscription/subscription.module').then( m => m.SubscriptionModule)
+  }, // must remove**
 
 ];
 @NgModule({
