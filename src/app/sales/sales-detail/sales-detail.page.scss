@@ -1,0 +1,220 @@
+/* HEADER */
+.header-row {
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* FLAT CARD */
+.flat-card {
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.flat-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  
+  ion-icon {
+    margin-left: auto;
+    cursor: pointer;
+    color: #666;
+    
+    &:hover {
+      color: #e0b84f;
+    }
+  }
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.green {
+  background: #3cff00;
+}
+
+.status-text {
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/* BODY */
+.flat-body {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.flat-body div {
+  margin: 4px 0;
+}
+
+/* SALE DETAILS */
+.section-heading {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+}
+
+input, select {
+  border: 1px solid #000;
+  padding: 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+/* BUTTONS */
+.yellow-btn {
+  background: #e0b84f;
+  border: 1px solid #000;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: auto;
+  cursor: pointer;
+  
+  &:hover {
+    background: #d4a642;
+  }
+}
+
+.yellow-btn.small {
+  padding: 6px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.select-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+}
+
+.center-date-popover {
+  --width: 320px;
+  --max-width: 90%;
+}
+
+.center-date-popover::part(content) {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 12px;
+}
+
+/* Details Popover Styles - EXACT UI from screenshot */
+.details-popover.simple-popover {
+  --width: 320px;
+  --max-width: 90%;
+  --min-width: 280px;
+}
+
+.details-popover.simple-popover::part(content) {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  border: 1px solid #ddd;
+}
+
+.popover-content {
+  padding: 16px;
+  background: white;
+  position: relative;
+  padding-top: 40px; /* Make space for the close button */
+}
+
+/* Close Button Styles */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  
+  &:active {
+    background-color: #e0e0e0;
+  }
+  
+  ion-icon {
+    font-size: 20px;
+    color: #666;
+    
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.detail-row .label {
+  font-weight: 600;
+  min-width: 130px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.detail-row .value {
+  color: #555;
+  flex: 1;
+  padding-left: 8px;
+}
+
+/* Additional styles for specific status */
+.detail-row .label:contains("Status :") + .value {
+  font-weight: 500;
+  color: #e0b84f;
+}
+
+/* Additional styles */
+.border-box {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}

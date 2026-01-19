@@ -34,7 +34,26 @@ const routes: Routes = [
     path: 'subscription',
     loadChildren: () => import('./tabs/subscription/subscription.module').then( m => m.SubscriptionModule)
   }, // must remove**
-
+  {
+    path: 'inventory',
+    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryModule)
+  }, // must remove**
+  {
+    path: 'test2',
+    loadChildren: () => import('./inventory-detail/test2.module').then( m => m.Test2PageModule)
+  },   // must remove**
+  {
+    path: 'sales-list',
+    loadChildren: () => import('./sales/sales-list/sales-list.module').then( m => m.SalesListPageModule)
+  },// must remove**
+  {
+    path: 'sales-detail',
+    loadChildren: () => import('./sales/sales-detail/sales-detail.module').then( m => m.SalesDetailPageModule)
+  },// must remove**
+  {
+    path: 'ledger',
+    loadChildren: () => import('./sales/ledger/ledger.module').then( m => m.LedgerPageModule)
+  },// must remove**
 ];
 @NgModule({
   imports: [

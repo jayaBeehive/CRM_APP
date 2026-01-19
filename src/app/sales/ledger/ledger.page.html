@@ -1,0 +1,102 @@
+<ion-toolbar color="primary" class="shadow-sm rounded-bottom">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-start">
+      <ion-col size="auto">
+        <ion-buttons>
+          <ion-button (click)="goBack()">
+            <ion-icon size="small" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col size="auto">
+        <div class="d-flex ion-align-items-center ion-justify-content-start ion-justify-content-between">
+          <ion-title size="small" class="m-0 fw-bold">
+            Leadger
+          </ion-title>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="ledgerForm">
+      <ion-item lines="none" class="border-box mt-20">
+        <ion-select placeholder="Select Time Period" class="w-100" formControlName="timePeriod">
+          <ion-select-option value="today">Today</ion-select-option>
+          <ion-select-option value="week">Week</ion-select-option>
+          <ion-select-option value="month">Month</ion-select-option>
+          <ion-select-option value="year">Year</ion-select-option>
+          <ion-select-option value="custom">Custom</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="form-group" *ngIf="ledgerForm.get('timePeriod')?.value === 'custom'">
+        <ion-item lines="none" class="border-box mt-20">
+          <ion-input placeholder="Pick Start Date" value="{{ ledgerForm.value.fromdate  | date: 'dd-MM-YYYY' }}"
+            id="fromdate">
+          </ion-input>
+          <ion-popover #ionPopover1 trigger="fromdate" cssClass="center-date-popover">
+            <ng-template>
+              <ion-datetime presentation="fromdate" (ionChange)="onPopoverClick()" formControlName="fromdate">
+              </ion-datetime>
+            </ng-template>
+          </ion-popover>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        </ion-item>
+      </div>
+
+      <div class="form-group" *ngIf="ledgerForm.get('timePeriod')?.value === 'custom'">
+        <ion-item lines="none" class="border-box mt-20">
+          <ion-input placeholder="Pick End Date" value="{{ ledgerForm.value.todate  | date: 'dd-MM-YYYY' }}" id="todate">
+          </ion-input>
+          <ion-popover #ionPopover2 trigger="todate" cssClass="center-date-popover">
+            <ng-template>
+              <ion-datetime presentation="todate" (ionChange)="onPopoverClick()" formControlName="todate">
+              </ion-datetime>
+            </ng-template>
+          </ion-popover>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        </ion-item>
+      </div>
+  </form>
+  <ion-card class="sale-card" *ngFor="let sale of sales">
+
+    <!-- HEADER -->
+    <div class="card-header">
+      <div class="left">
+        <span class="status-dot"></span>
+        <span class="sale-id">Sale Id # {{ sale.id }}</span>
+      </div>
+
+      <div class="right">
+        <span class="status-text">{{ sale.status }}</span>
+        <!-- <ion-icon size="small" name="notifications-outline" *ngIf="sale.status !== 'Fully Paid'"></ion-icon>
+        <ion-icon size="small" name="menu-outline" (click)="salesDetail()"></ion-icon> -->
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="card-body">
+      <div class="row">
+        <ion-icon size="small" name="person-outline"></ion-icon>
+        <span>Lead Name - {{ sale.leadName }}, {{ sale.phone }}</span>
+      </div>
+
+      <div class="row">
+        Inventory - {{ sale.inventory }}
+      </div>
+
+      <div class="row amount-row">
+        <span>Lead For - {{ sale.leadFor }}</span>
+        <strong>{{ sale.amount | number }}</strong>
+      </div>
+    </div>
+
+  </ion-card>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <span>Total Earning - <b>{{ totalPaid | number }}</b></span>
+  </div>
+
+</ion-content>

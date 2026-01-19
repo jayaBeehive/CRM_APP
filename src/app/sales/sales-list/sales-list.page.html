@@ -1,0 +1,68 @@
+<ion-toolbar color="primary" class="shadow-sm rounded-bottom">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <ion-col size="auto">
+        <div class="d-flex ion-align-items-center ion-justify-content-start">
+          <ion-title size="small" class="m-0 fw-bold">
+            Hi there!
+          </ion-title>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-col size="6">
+        <h4>My Sale</h4>
+      </ion-col>
+      <ion-col size="6" class="d-flex ion-justify-content-end" size="small">
+        <ion-icon size="small" name="logo-yen" (click)="openLedger()"></ion-icon>
+        <ion-icon size="small" name="funnel-outline"></ion-icon>
+        <ion-icon size="small" name="add-circle-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+  <ion-card class="sale-card" *ngFor="let sale of sales">
+
+    <!-- HEADER -->
+    <div class="card-header">
+      <div class="left">
+        <span class="status-dot"></span>
+        <span class="sale-id">Sale Id # {{ sale.id }}</span>
+      </div>
+
+      <div class="right">
+        <span class="status-text">{{ sale.status }}</span>
+        <ion-icon size="small" name="notifications-outline" *ngIf="sale.status !== 'Fully Paid'"></ion-icon>
+        <ion-icon size="small" name="menu-outline" (click)="salesDetail()"></ion-icon>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="card-body">
+      <div class="row">
+        <ion-icon size="small" name="person-outline"></ion-icon>
+        <span>Lead Name - {{ sale.leadName }}, {{ sale.phone }}</span>
+      </div>
+
+      <div class="row">
+        Inventory - {{ sale.inventory }}
+      </div>
+
+      <div class="row amount-row">
+        <span>Lead For - {{ sale.leadFor }}</span>
+        <strong>{{ sale.amount | number }}</strong>
+      </div>
+    </div>
+
+  </ion-card>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <span>Total Paid - <b>{{ totalPaid | number }}</b></span>
+    <span>To be paid - <b>{{ toBePaid | number }}</b></span>
+  </div>
+
+</ion-content>

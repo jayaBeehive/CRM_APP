@@ -1,0 +1,89 @@
+<!-- <ion-toolbar color="primary" class="shadow-sm rounded-bottom">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <ion-col size="auto">
+        <div class="d-flex ion-align-items-center ion-justify-content-start">
+          <ion-title size="small" class="m-0 fw-bold">
+            Hi {{userName}}!
+          </ion-title>
+        </div>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-buttons>
+          <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar> -->
+
+<ion-toolbar color="primary" class="shadow-sm rounded-bottom">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <ion-col size="auto">
+        <div class="d-flex ion-align-items-center ion-justify-content-start">
+          <ion-title size="small" class="m-0 fw-bold">
+            Hi there!
+          </ion-title>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-col size="6">
+        <h4>Inventory List</h4>
+      </ion-col>
+      <ion-col size="6" class="d-flex ion-justify-content-end" size="small">
+        <ion-icon size="small" name="funnel-outline"></ion-icon>
+        <ion-icon size="small" name="add-circle-outline" (click)="inventoryCreation()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  <ion-card class="inventory-card" *ngFor="let inventory of inventoryList">
+
+    <!-- TOP ROW -->
+    <div class="card-header">
+      <div class="left">
+        <span class="status-dot"
+          [ngClass]="{
+            'available': inventory.status === 'Available',
+            'sold': inventory.status === 'Sold',
+            'na': inventory.status === 'Not Available'
+          }">
+        </span>
+
+        <span class="inv-id" (click)="inventoryDetail()">Inventory ID #{{ inventory.id }}</span>
+      </div>
+
+      <div class="right">
+        <span class="status-text">{{ inventory.status }}</span>
+        <ion-icon size="small" name="create-outline" (click)="editInventory()"></ion-icon>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="card-body">
+      <div class="row">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span>Seller Name - {{ inventory.sellerName }}</span>
+      </div>
+
+      <div class="row">
+        Project Name - {{ inventory.projectName }}
+      </div>
+
+      <div class="row">
+        Lead For - {{ inventory.leadFor }}
+      </div>
+
+      <div class="row checkbox-row">
+        <span class="padding_left">Not Available</span>
+        <ion-checkbox></ion-checkbox>
+      </div>
+    </div>
+
+  </ion-card>
+
+</ion-content>

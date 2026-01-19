@@ -1,0 +1,78 @@
+.inventory-card {
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+/* HEADER */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-header .left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inv-id {
+  font-weight: 800;
+}
+
+/* STATUS DOT */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.available {
+  background: #2ecc71;
+}
+
+.status-dot.sold {
+  background: #1e8449;
+}
+
+.status-dot.na {
+  background: #888;
+}
+
+/* RIGHT SIDE */
+.card-header .right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-text {
+  font-size: 11px;
+}
+
+/* BODY */
+.card-body {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.card-body .row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0;
+}
+
+.checkbox-row {
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.padding_left {
+    padding-left: 13rem;
+}
